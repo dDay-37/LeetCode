@@ -15,5 +15,4 @@ class Solution(object):
         for i in range(l-k):
             val = val - nums[i] + nums[k+i]
             m = max(m,val)
-            print(m)
         return float(m)/k
