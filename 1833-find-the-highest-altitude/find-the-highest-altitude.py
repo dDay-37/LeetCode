@@ -6,7 +6,7 @@ class Solution(object):
         """
         alt = 0
         m = 0
-        for i in range(len(gain)):
-            alt += gain[i]
+        for i in gain:
+            alt += i
             m = max(m,alt)
         return m
