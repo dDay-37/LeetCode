@@ -17,12 +17,9 @@ class Solution(object):
             if arr[i]>arr[j]:
                 j+=1
                 w+=1
-                # print("w+=1",arr[0])
             else:
                 i=j
                 j+=1
                 w=1
-                # print("w=0",arr[0])
             
-        # print(arr)
         return arr[i]
