@@ -5,8 +5,8 @@ class Solution(object):
         :rtype: int
         """
         n=len(nums)//2
-        nums.sort()
+        num=sorted(nums)
         s=0
         for i in range(n):
-            s=max(s,nums[i]+nums[-i-1])
+            s=max(s,num[i]+num[-i-1])
         return s
