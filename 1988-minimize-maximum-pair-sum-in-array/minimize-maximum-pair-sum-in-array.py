@@ -8,5 +8,5 @@ class Solution(object):
         num=sorted(nums)
         s=0
         for i in range(n):
-            s=max(s,num[i]+num[-i-1])
+            s=max(s,num[i]+num[-(i+1)])
         return s
