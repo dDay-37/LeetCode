@@ -5,24 +5,18 @@
 #         self.left = left
 #         self.right = right
 class Solution(object):
-    ans=""
     def tree2str(self, root):
-        """
-        :type root: TreeNode
-        :rtype: str
-        """
-        def a(root):
-            if root:
-                self.ans+=str(root.val)
-                if root.left or root.right:
-                    self.ans+="("
-                    a(root.left)
-                    self.ans+=")"
-                if root.right:
-                    self.ans+="("
-                    a(root.right)
-                    self.ans+=")"
-            return
-        a(root)
-        return self.ans
+        ans=[]
+        def DLR( root):
+            if not root:
+                return
+            ans.append('(')     
+            ans.append(str(root.val)) 
+            if not root.left and root.right:
+                ans.append('()')
+            DLR(root.left)
+            DLR(root.right)
+            ans.append(')') 
+        DLR(root)
+        return "".join(ans)[1:-1]
         
