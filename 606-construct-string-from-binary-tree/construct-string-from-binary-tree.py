@@ -24,6 +24,5 @@ class Solution(object):
                     self.ans+=")"
             return
         a(root)
-        print(self.ans)
         return self.ans
         
