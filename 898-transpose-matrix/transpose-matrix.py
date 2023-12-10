@@ -1,10 +1,15 @@
 class Solution(object):
     def transpose(self, matrix):
-        mat = [ [0 for y in range(len(matrix))] for y in range(len(matrix[0]))] 
-        for row in range(len(matrix)):
-            for col in range(len(matrix[0])):
-                mat[col][row] = matrix[row][col]
-        return mat
-
-
-        
+        """
+        :type matrix: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        r = len(matrix)
+        c = len(matrix[0])
+        m = []
+        for i in range(c):
+            row = []
+            for j in range(r):
+                row.append(matrix[j][i])
+            m.append(row)
+        return m
