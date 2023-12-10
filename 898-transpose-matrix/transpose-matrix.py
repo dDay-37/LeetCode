@@ -1,14 +1,11 @@
-class Solution:
+class Solution(object):
     def transpose(self, matrix):
-        n = len(matrix)
-        m = len(matrix[0])
-
-        ans = []
-
-        for j in range(m):
-            temp = []
-            for i in range(n):
-                temp.append(matrix[i][j])
-            ans.append(temp)
-
-        return ans
+        row = len(matrix)
+        col = len(matrix[0])
+        result = [[0] * row for _ in range(col)]
+        
+        for i in range(col):
+            for j in range(row):
+                result[i][j] = matrix[j][i]
+                
+        return result
