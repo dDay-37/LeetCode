@@ -1,7 +1,11 @@
+import heapq as heap
+
 class Solution(object):
     def maxProduct(self, nums):
-        nums = [-s for s in nums]
-        heapq.heapify(nums)
-        a = heapq.heappop(nums)
-        b = heapq.heappop(nums)
-        return abs((a+1)*(b+1))     
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        heap.heapify(nums)
+        maxi = heap.nlargest(2, nums)
+        return (maxi[0]-1) * (maxi[1]-1)   
