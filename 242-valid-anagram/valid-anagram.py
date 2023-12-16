@@ -5,14 +5,12 @@ class Solution(object):
         :type t: str
         :rtype: bool
         """
-        a = list(s)
-        b = list(t)
-        a.sort()
-        b.sort()
-        print(a)
-        print(b)
-        if a == b:
-            return True
-        else:
+        if len(s) != len(t):
             return False
+
+        tem = set(s)
+        for i in tem:
+            if not (i in t and i in s and s.count(i) == t.count(i)):
+                return False
+        return True
         
