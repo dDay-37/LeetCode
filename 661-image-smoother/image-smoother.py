@@ -1,25 +1,39 @@
 class Solution(object):
     def imageSmoother(self, img):
-        m, n = len(img), len(img[0])
-        res = [[0] * n for _ in range(m)]
-
+        """
+        :type M: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        m = len(img)
+        n = len(img[0])
+        result = [[i for i in row] for row in img]
         for i in range(m):
             for j in range(n):
-                res[i][j] = self.f(img, i, j)
-
-        return res
-
-    def f(self, img, x, y):
-        m, n = len(img), len(img[0])
-        s, c = 0, 0
-
-        for i in range(-1, 2):
-            for j in range(-1, 2):
-                nx, ny = x + i, y + j
-                if 0 <= nx < m and 0 <= ny < n:
-                    s += img[nx][ny]
-                    c += 1
-
-        return s // c
-        
-        
+                total = img[i][j]
+                count = 1
+                if i > 0:
+                    total += img[i-1][j]
+                    count += 1
+                if j > 0:
+                    total += img[i][j - 1]
+                    count += 1
+                if i < m - 1:
+                    total += img[i+1][j]
+                    count += 1
+                if j < n - 1:
+                    total += img[i][j+1]
+                    count += 1
+                if i > 0 and j > 0:
+                    total += img[i-1][j-1]
+                    count += 1
+                if i < m - 1 and j < n - 1:
+                    total += img[i+1][j+1]
+                    count += 1
+                if i > 0 and j < n - 1:
+                    total += img[i-1][j+1]
+                    count += 1
+                if i < m - 1 and j > 0:
+                    total += img[i+1][j-1]
+                    count += 1
+                result[i][j] = total / count
+        return result
