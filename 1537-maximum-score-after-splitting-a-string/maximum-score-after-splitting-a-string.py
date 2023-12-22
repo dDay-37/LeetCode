@@ -1,13 +1,23 @@
 class Solution(object):
     def maxScore(self, s):
-        r = 0
-        for i in range(len(s) - 1):
-            c = 0
-            for j in range(i + 1):
-                if s[j] == '0':
-                    c += 1
-            for j in range(i + 1, len(s)):
-                if s[j] == '1':
-                    c += 1
-            r = max(r, c)
-        return r
+        one=0
+        for i in range(1,len(s)):
+            if s[i] == "1":
+                one+=1
+       
+        if s[0] == "1":
+            zero = 0
+            res = one
+        if s[0] == "0":
+            zero = 1
+            res = one +1
+    
+        for i in range(1,len(s)-1):
+            
+            if s[i] == "0":
+                zero+=1
+            if s[i] == "1":
+                one-=1
+            res = max(res, zero+one)
+  
+        return res
