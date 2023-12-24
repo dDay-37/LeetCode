@@ -18,4 +18,4 @@ class Solution(object):
                     y+=1
                 else:
                     x+=1
-        return n-max(x,y)
+        return min(x,y)
