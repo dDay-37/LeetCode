@@ -4,10 +4,9 @@ class Solution(object):
         :type s: str
         :rtype: int
         """
-        n=len(s)
         x=0
         y=0
-        for i in range(n):
+        for i in range(len(s)):
             if i%2==0:
                 if s[i]=='0':
                     x+=1
