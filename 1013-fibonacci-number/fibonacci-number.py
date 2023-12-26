@@ -1,6 +1,9 @@
 class Solution:
     def fib(self, n: int) -> int:
+        o=1
+        t=1
         if n<2:
             return n
-        return self.fib(n-1) + self.fib(n-2)
-        
+        for i in range(2,n):
+            t,o=o+t,t
+        return t
