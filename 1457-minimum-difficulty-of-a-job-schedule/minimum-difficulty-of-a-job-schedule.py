@@ -1,17 +1,22 @@
 class Solution:
-    def minDifficulty(self, jD: List[int], d: int) -> int:
-        if len(jD)<d:return -1
-        def solve(i,d):
-            if i==len(jD):return 100000000
-            if d==1:return max(jD[i:])
-            if dp[i][d]!=-1:return dp[i][d]
-            ans=100000000
-            mx=-1
-            for j in range(i,len(jD)):
-                mx=max(mx,jD[j])
-                temp=mx+solve(j+1,d-1)
-                ans=min(ans,temp)
-            dp[i][d]=ans
-            return dp[i][d]
-        dp=[[-1 for i in range(d+1)] for i in range(len(jD))]
-        return solve(0,d)
+    def minDifficulty(self, jobDifficulty, d):
+        n = len(jobDifficulty)
+        if n < d:
+            return -1
+        prev = [float('inf')] * n
+        curr = [float('inf')] * n
+        for day in range(d):
+            stack = []
+            for i in range(day, n):
+                if i == 0:
+                    curr[i] = jobDifficulty[0]
+                else:
+                    curr[i] = prev[i - 1] + jobDifficulty[i]
+                while stack and jobDifficulty[stack[-1]] <= jobDifficulty[i]:
+                    j = stack.pop()
+                    curr[i] = min(curr[i], curr[j] + jobDifficulty[i] - jobDifficulty[j])
+                if stack:
+                    curr[i] = min(curr[i], curr[stack[-1]])
+                stack.append(i)
+            prev, curr = curr, prev
+        return prev[-1]
