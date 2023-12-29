@@ -1,15 +1,17 @@
 class Solution:
     def minDifficulty(self, jD: List[int], d: int) -> int:
         if len(jD)<d:return -1
-        dp=[[0 for i in range(d+1)] for i in range(len(jD)+1)]
-        for i in range(d+1):dp[len(jD)][i]=10**6
-        for i in range(len(jD)):dp[i][1]=max(jD[i:])
-        for i in range(len(jD)-1,-1,-1):
-            for j in range(2,d+1):
-                ans,mx=10**6,-1
-                for k in range(i,len(jD)):
-                    mx=max(mx,jD[k])
-                    temp=mx+dp[k+1][j-1]
-                    ans=min(ans,temp)
-                dp[i][j]=ans
-        return dp[0][d]
+        def solve(i,d):
+            if i==len(jD):return 100000000
+            if d==1:return max(jD[i:])
+            if dp[i][d]!=-1:return dp[i][d]
+            ans=100000000
+            mx=-1
+            for j in range(i,len(jD)):
+                mx=max(mx,jD[j])
+                temp=mx+solve(j+1,d-1)
+                ans=min(ans,temp)
+            dp[i][d]=ans
+            return dp[i][d]
+        dp=[[-1 for i in range(d+1)] for i in range(len(jD))]
+        return solve(0,d)
