@@ -1,10 +1,14 @@
 class Solution:
     def makeEqual(self, words: List[str]) -> bool:
-        
-        joint = ''.join(words)
-        set1 = set(joint)
-        
-        for i in set1 :
-            if joint.count(i) % len(words) != 0 : return False 
+        charCount = {}
+        numWords = len(words)
+
+        for word in words:
+            for char in word:
+                charCount[char] = charCount.get(char, 0) + 1
+
+        for count in charCount.values():
+            if count % numWords != 0:
+                return False
+
         return True
-        
