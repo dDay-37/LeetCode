@@ -1,14 +1,12 @@
 class Solution:
     def maxLengthBetweenEqualCharacters(self, s: str) -> int:
+        n=len(s)
+        alpha=[-1]*26 #initial position for every letter
+        maxLen=-1 
+        for i, c in enumerate(s):
+            if alpha[ord(c)-ord('a')]!=-1: # letter c already found
+                maxLen =max(maxLen, i-alpha[ord(c)-ord('a')]-1)
+            else: # first found for the letter c
+               alpha[ord(c)-ord('a')]=i
+        return maxLen 
         
-        length = -1
-        myhash= {}
-        
-        for i in range(len(s)):
-            
-            if s[i] not in myhash:
-                myhash[s[i]] = i
-            else:
-                length = max(length , i- myhash.get(s[i]) -1)
-                
-        return length
