@@ -1,13 +1,20 @@
 class Solution:
     def findMatrix(self, nums: List[int]) -> List[List[int]]:
-        mat=[[]]
-        for i in nums:
-            f=0
-            for j in mat:
-                if i not in j:
-                    j.append(i)
-                    f=1
+        res = []
+
+        for num in nums:
+            found = False
+            for group in res:
+                if num in group:
+                    continue
+                else:
+                    found = True
+                    group.add(num)
                     break
-            if f==0:
-                mat.append([i])
-        return mat        
+            
+            if not found:
+                res.append(set([num]))
+        
+        return res
+            
+        
