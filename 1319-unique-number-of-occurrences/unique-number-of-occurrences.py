@@ -1,13 +1,19 @@
-class Solution(object):
-    def uniqueOccurrences(self, arr):
-        """
-        :type arr: List[int]
-        :rtype: bool
-        """
-        s = set(arr)
-        c = []
-        for i in s:
-            c.append(arr.count(i))
-        if len(c) == len(set(c)):
+class Solution:
+    def uniqueOccurrences(self, arr: List[int]) -> bool:
+        arr.sort()
+        cnt=[]
+        c=arr[0]
+        arr.append('a')
+        l=1
+        for i in range(1,len(arr)):
+            if arr[i]!=c:
+                cnt.append(l)
+                c=arr[i]
+                l=1
+            else:
+                l+=1
+        # print(cnt)
+        if len(cnt)==len(set(cnt)):
             return True
-        return False
+        else:
+            return False
