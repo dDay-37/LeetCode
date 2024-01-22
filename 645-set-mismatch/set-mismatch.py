@@ -1,4 +1,3 @@
-from collections import Counter
 class Solution:
     def findErrorNums(self, nums: List[int]) -> List[int]:
         nums.sort()
