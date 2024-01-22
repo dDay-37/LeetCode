@@ -1,11 +1,13 @@
 class Solution:
-    def findErrorNums(self, nums: List[int]) -> List[int]:
-        nums.sort()
-        nums.append("-1")
-        x,y=-1,1
-        for i in range(len(nums)-1):
-            if nums[i]==nums[i+1]:
-                x=nums[i]
-            if y==nums[i]:
-                y+=1
-        return [x,y]
+    def findErrorNums(self, nums):
+        dup, missing = -1, -1
+        
+        for i in range(1, len(nums) + 1):
+            count = nums.count(i)
+            if count == 2:
+                dup = i
+            elif count == 0:
+                missing = i
+        
+        return [dup, missing]
+
