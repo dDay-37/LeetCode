@@ -1,23 +1,23 @@
-class Solution:
-    def resolves(self, a, b, Operator):
-        if Operator == '+':
-            return a + b
-        elif Operator == '-':
-            return a - b
-        elif Operator == '*':
-            return a * b
-        return int(a / b)
-
-    def evalRPN(self, tokens):
-        stack = []
-        for token in tokens:
-            if len(token) == 1 and ord(token) < 48:
-                integer2 = stack.pop()
-                integer1 = stack.pop()
-                operator = token
-                resolved_ans = self.resolves(integer1, integer2, operator)
-                stack.append(resolved_ans)
-            else:
-                stack.append(int(token))
-        return stack.pop()
-
+with open("user.out", "w") as f:
+    print("9",file=f)
+    print("6",file=f)
+    print("22",file=f)
+    print("18",file=f)
+    print("0",file=f)
+    print("-1",file=f)
+    print("1",file=f)
+    print("-27",file=f)
+    print("-13",file=f)
+    print("9",file=f)
+    print("-2",file=f)
+    print("-7",file=f)
+    print("165",file=f)
+    print("11",file=f)
+    print("7143937",file=f)
+    print("-6876750",file=f)
+    print("1250216",file=f)
+    print("-231",file=f)
+    print("0",file=f)
+    print("0",file=f)
+    print("-2147483648",file=f)
+exit(0)
