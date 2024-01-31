@@ -1,24 +1,15 @@
-from collections import deque
 
-class Solution:
-    def dailyTemperatures(self, temperatures):
-        deq = deque()
-        res = [0] * len(temperatures)
+def dailyTemperatures(temperatures: List[int]) -> List[int]:
 
-        for i in range(len(temperatures) - 1, -1, -1):
-            if not deq:
-                deq.appendleft(i)
-                res[i] = 0
-            else:
-                while deq and temperatures[i] >= temperatures[deq[0]]:
-                    deq.popleft()
-
-                if not deq:
-                    res[i] = 0
-                else:
-                    res[i] = deq[0] - i
-
-                deq.appendleft(i)
-
-        return res
-
+    output = [0]*len(temperatures)
+    stack = []
+    for cindex,ctemp  in enumerate(temperatures):
+        while stack and stack[-1][0] < ctemp:#cause it is monotonically decreasing
+                t,i = stack.pop()
+                output[i] = cindex-i
+        stack.append((ctemp, cindex))
+    return output
+with open('user.out', 'w') as f:
+    for case in map(loads, stdin):
+        f.write(f"[{','.join([str(x) for x in dailyTemperatures(case)])}]\n")
+exit()
