@@ -1,5 +1,3 @@
-
-
 class Solution:
     def frequencySort(self, s: str) -> str:
         counter = Counter(s)
@@ -10,4 +8,3 @@ class Solution:
             freq, char = heapq.heappop(pq)
             result += char * -freq
         return result
-
