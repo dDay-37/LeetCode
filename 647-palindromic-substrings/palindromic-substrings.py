@@ -1,26 +1,11 @@
 class Solution:
-    def countSubstrings(self, s: str) -> int:
-        n = len(s)
-        ans = 0
-
-        if n <= 0:
-            return 0
-
-        dp = [[False] * n for _ in range(n)]
-
-        for i in range(n):
-            dp[i][i] = True
-            ans += 1
-
-        for i in range(n - 1):
-            dp[i][i + 1] = (s[i] == s[i + 1])
-            ans += 1 if dp[i][i + 1] else 0
-
-        for length in range(3, n + 1):
-            for i in range(n - length + 1):
-                j = i + length - 1
-                dp[i][j] = dp[i + 1][j - 1] and (s[i] == s[j])
-                ans += 1 if dp[i][j] else 0
-
+    def countSubstrings(self, S: str) -> int:
+        ans, n, i = 0, len(S), 0
+        while (i < n):
+            j, k = i - 1, i
+            while k < n - 1 and S[k] == S[k+1]: k += 1                
+            ans += (k - j) * (k - j + 1) // 2
+            i, k = k + 1, k + 1
+            while ~j and k < n and S[k] == S[j]:
+                j, k, ans = j - 1, k + 1, ans + 1
         return ans
-
