@@ -1,25 +1,15 @@
 class Solution:
     def rearrangeArray(self, nums: List[int]) -> List[int]:
-        a, b, c = [], [], []
+        
+        pos, neg = [], []
 
-        # Separate positive and negative integers into two separate arrays
         for num in nums:
-            if num > 0:
-                a.append(num)
+            if num >= 0:
+                pos.append(num)
             else:
-                b.append(num)
+                neg.append(num)
 
-        # Interleave positive and negative integers while preserving their order
-        count, c1, c2 = 0, 0, 0
-        for num in nums:
-            if count % 2 == 0:
-                n = a[c1]
-                c.append(n)
-                c1 += 1
-            else:
-                n = b[c2]
-                c.append(n)
-                c2 += 1
-            count += 1
+        nums[0 : len(pos) * 2 : 2] = pos
+        nums[1 : len(neg) * 2 : 2] = neg
 
-        return c
+        return nums
