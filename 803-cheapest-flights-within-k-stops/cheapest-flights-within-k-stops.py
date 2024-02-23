@@ -10,5 +10,5 @@ class Solution:
                     continue
                 if before[fr] + cs < after[to]:
                     after[to] = before[fr] + cs
-            before = after
+            before = after.copy()
         return after[dst] if after[dst] != float('inf') else -1
