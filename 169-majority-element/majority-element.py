@@ -10,12 +10,4 @@ class Solution:
             if c==0:
                 c=1
                 m=i
-        # c=0
-        # for i in nums:
-        #     if i == m:
-        #         c+=1
-        # if c>len(nums)//2:
-        #     return m
-        # else:
-        #     return 
         return m
