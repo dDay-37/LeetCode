@@ -5,8 +5,4 @@ class Solution(object):
         :rtype: str
         """
         c=s.count("1")
-        a=''
-        a+='1'*(c-1)
-        a+='0'*(len(s)-c)
-        a+='1'
-        return a
+        return '1'*(c-1)+'0'*(len(s)-c)+'1'
