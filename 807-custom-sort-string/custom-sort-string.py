@@ -1,14 +1,18 @@
 class Solution(object):
     def customSortString(self, order, s):
-        """
-        :type order: str
-        :type s: str
-        :rtype: str
-        """
-        a=''
-        s=list(s)
+        mp = defaultdict(int)
+
+        for i in s:
+            mp[i] += 1
+
+        ans = ""
         for i in order:
-            while i in s:
-                a+=i
-                s.remove(i)
-        return a+"".join(s)
+            if i in mp:
+                ans += i * mp[i]
+                mp[i] = 0
+
+        for key, value in mp.items():
+            if value != 0:
+                ans += key * value
+
+        return ans
