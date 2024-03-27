@@ -18,7 +18,6 @@ class Solution(object):
             for i in range(n):
                 v=q.popleft()
                 if v:
-                    print("v.val",v.val)
                     tmp.append(v.val)
                     if v.left:
                         q.append(v.left)
@@ -26,5 +25,4 @@ class Solution(object):
                         q.append(v.right)
             if tmp:
                 ans.append(tmp)
-        print(ans)
         return ans
