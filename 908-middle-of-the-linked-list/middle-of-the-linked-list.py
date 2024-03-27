@@ -14,5 +14,4 @@ class Solution(object):
         while f and f.next:
             s=s.next
             f=f.next.next
-        
         return s
