@@ -19,10 +19,8 @@ class Solution(object):
                 v=q.popleft()
                 if v:
                     tmp.append(v.val)
-                    if v.left:
-                        q.append(v.left)
-                    if v.right:
-                        q.append(v.right)
+                    q.append(v.left)
+                    q.append(v.right)
             if tmp:
                 ans.append(tmp)
         return ans
