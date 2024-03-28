@@ -18,5 +18,5 @@ class Solution(object):
                     l+=1
                 d[nums[l]]-=1
                 l+=1
-            ans=max(ans,r-l+1)
+            if r-l+1>ans: ans=r-l+1 
         return ans
