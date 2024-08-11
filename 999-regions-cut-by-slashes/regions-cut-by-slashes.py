@@ -1,49 +1,47 @@
 class Solution:
     def regionsBySlashes(self, grid: List[str]) -> int:
-        n = len(grid)
-        parent = {}
+        row,col=len(grid),len(grid[0])
+        gx3=[[0]*3*col for _ in range(3*row)]
+        for i in range(row):
+            for j in range(col):
+                # print(grid[i][j])
+                if grid[i][j]=='/':
+                    gx3[i*3][j*3+2]=1
+                    gx3[i*3+1][j*3+1]=1
+                    gx3[i*3+2][j*3]=1
+                elif grid[i][j]=='\\':
+                    gx3[i*3][j*3]=1
+                    gx3[i*3+1][j*3+1]=1
+                    gx3[i*3+2][j*3+2]=1
+        # for l in gx3:
+        #     print(l)
+        def dfs(r,c,visit):
+            if (r<0 or c<0 or r==row*3 or c==col*3 or gx3[r][c]!=0 or (r,c) in visit):
+                return
+            # print((r,c))
+            visit.add((r,c))
+            dfs(r-1,c,visit)
+            dfs(r,c-1,visit)
+            dfs(r+1,c,visit)
+            dfs(r,c+1,visit)
         
-        # Initialize the union-find parent for each triangle
-        def find(x):
-            if parent[x] != x:
-                parent[x] = find(parent[x])
-            return parent[x]
-        
-        def union(x, y):
-            rootX = find(x)
-            rootY = find(y)
-            if rootX != rootY:
-                parent[rootX] = rootY
-        
-        # Each cell is represented by 4 triangles: 0 (top-left), 1 (top-right), 2 (bottom-right), 3 (bottom-left)
-        def get_index(i, j, k):
-            return (i * n + j) * 4 + k
-        
-        # Initialize all triangles
-        for i in range(n):
-            for j in range(n):
-                for k in range(4):
-                    parent[get_index(i, j, k)] = get_index(i, j, k)
-                        
-        for i in range(n):
-            for j in range(n):
-                if grid[i][j] == '/':
-                    union(get_index(i, j, 0), get_index(i, j, 3))
-                    union(get_index(i, j, 1), get_index(i, j, 2))
-                elif grid[i][j] == '\\':
-                    union(get_index(i, j, 0), get_index(i, j, 1))
-                    union(get_index(i, j, 2), get_index(i, j, 3))
-                else:
-                    union(get_index(i, j, 0), get_index(i, j, 1))
-                    union(get_index(i, j, 1), get_index(i, j, 2))
-                    union(get_index(i, j, 2), get_index(i, j, 3))
-                
-                # Union with right and bottom cells if possible
-                if j + 1 < n:
-                    union(get_index(i, j, 1), get_index(i, j + 1, 3))
-                if i + 1 < n:
-                    union(get_index(i, j, 2), get_index(i + 1, j, 0))
-        
-        # Count the number of distinct roots
-        return sum(find(x) == x for x in parent)
-        
+        visit=set()
+        res=0
+        for i in range(row*3):
+            for j in range(col*3):
+                if (gx3[i][j]==0 and (i,j) not in visit):
+                    dfs(i,j,visit)
+                    # print("done")
+                    res+=1
+        # print(visit)
+        return res
+        # return -1
+        # dct={'/':[[0,0,1],[0,1,0],[1,0,0]], '\\':[[1,0,0],[0,1,0],[0,0,1]], ' ':[[0,0,0],[0,0,0],[0,0,0]]}
+        # gx3=[]
+        # for row in grid:
+        #     for x in row:
+        #         gx3.append(dct[x])
+
+        # for row in gx3:
+        #     print(row)
+        # return -1 
