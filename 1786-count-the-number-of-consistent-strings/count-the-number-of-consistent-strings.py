@@ -1,7 +1,7 @@
 class Solution:
     def countConsistentStrings(self, allowed: str, words: List[str]) -> int:
         a=set(allowed)
-        print(a)
+        # print(a)
         c=0
         for i in words:
             f=1
