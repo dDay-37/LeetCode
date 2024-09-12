@@ -3,9 +3,11 @@ class Solution:
         a=set(allowed)
         # print(a)
         c=0
+        t=0
         for i in words:
+            t+=1
             for l in i:
                 if l not in a:
                     c+=1
                     break
-        return len(words)-c
+        return t-c
