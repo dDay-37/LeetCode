@@ -4,10 +4,10 @@ class Solution:
         # print(a)
         c=0
         for i in words:
-            f=1
+            f=True
             for l in i:
                 if l not in a:
-                    f=0
+                    f=False
             if f:
                 c+=1
         return c
