@@ -8,6 +8,7 @@ class Solution:
             for l in i:
                 if l not in a:
                     f=False
+                    break
             if f:
                 c+=1
         return c
